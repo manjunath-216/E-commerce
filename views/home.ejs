@@ -1,0 +1,21 @@
+<%- layout('layouts/boilerplate') %>
+<div class="row justify-content-center">
+    <div class="row mb-3">
+        <h1 class="h1 mb-5 text-center">Welcome to Shopee</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/products" method="get">
+                <div class="mb-3">
+                    <label class="form-label" for="category">Select category</label>
+                    <select class="form-select" name="category">
+                        <% for(let category of categories){ %>
+                            <option value="<%= category %>"><%= category %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="mb-3 text-center">
+                    <button class="btn btn-info">Show products</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

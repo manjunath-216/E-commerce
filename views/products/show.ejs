@@ -1,0 +1,44 @@
+<%- layout('./layouts/boilerplate') %>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <img src="<%= product.image %>" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text"><%= product.description %></p>
+            </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Price: <%= product.price %></li>
+                  <li class="list-group-item">Category: <%= product.category %></li>
+                  <li class="list-group-item">Seller: <%= product.seller.username %></li>
+                  <li class="list-group-item">Status: 
+                        <% if(product.available){ %>
+                            <span style="color:rgb(50, 230, 50)">Available</span> 
+                        <% } else{ %>
+                            <span style="color:red">Sold Out</span>
+                        <% } %>
+                    </li>
+                </ul>
+                <% if(product.available){ %>
+                    <div class="card-body">
+                        <% if(currentUser && product.seller.equals(currentUser._id)){ %>
+                            <a class="btn btn-info card-link" href="/products/<%= product._id %>/edit">Edit</a>
+                            <form class="d-inline" action="/products/<%= product._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger card-link">Delete</button>
+                            </form>
+                        <% } else{ %>
+                            <form class="d-inline" action="/products/<%= product._id %>?/buy" method="POST">
+                                <button class="btn btn-warning card-link">Buy</button>
+                            </form>
+                        <% } %>
+                    </div>
+                <% } else{ %>
+                    <div class="card-footer">
+                        Bought by <%= product.buyer.username %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
