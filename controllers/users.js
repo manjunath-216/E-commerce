@@ -43,8 +43,8 @@ module.exports.logout = (req, res) => {
     })
 }
 
-module.exports.showProducts = catchAsync( async (req, res) => {
+module.exports.dashboard = catchAsync( async (req, res) => {
     const {id} = req.params;
     const user = await User.findById(id).populate('own_products').populate('bought_products');
-    res.render('users/showProducts', {user});
+    res.render('users/dashboard', {user});
 })

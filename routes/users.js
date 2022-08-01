@@ -15,6 +15,6 @@ router.route('/login')
 
 router.get('/logout', users.logout)
 
-router.get('/users/:id/products', users.showProducts)
+router.get('/users/:id/dashboard', users.dashboard)
 
 module.exports = router;
