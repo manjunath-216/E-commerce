@@ -1,5 +1,5 @@
 <%- layout('layouts/boilerplate') %>
-<h2 class="text-center h2 mb-3 text-muted">Your products</h2>
+<h2 class="text-center h2 mb-3 text-muted">Sold products</h2>
 <div class="row row-cols-2 row-cols-md-3">
     <% for(let product of user.own_products){ %>
         <div class="col">
@@ -15,7 +15,9 @@
     <% } %>
 </div>
 
-<h2 class="text-center h2 mb-3 text-muted">Products</h2>
+<hr>
+
+<h2 class="text-center h2 mb-3 text-muted">Bought products</h2>
 <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 mb-3">
     <% for(let product of user.bought_products){ %>
         <div class="col">
