@@ -1,18 +1,26 @@
 const Product = require('../models/product');
 const catchAsync = require('../utils/catchAsync')
 const categories = require('../utils/categories')
-const User = require('../models/user')
+const User = require('../models/user');
+const { filter } = require('../utils/categories');
 
 
 module.exports.renderIndex = catchAsync(async (req, res) => {
-    const {category} = req.query;
-    if(category !== 'all'){
-        const products = await Product.find({category, available: true});
-        res.render('products/index', {products, category});
+    const {category, query} = req.query;
+    let filter = {available: true};
+    if(category && category !== 'all'){
+        filter.category = category;
+    }
+    if(query){
+        filter = {...filter, $text: {$search: query}};
+    }
+    if(category === 'all'){
+        const products = await Product.find(filter);
+        res.render('products/index', {products, category, query});
     }
     else{
-        const products = await Product.find({available: true});
-        res.render('products/index', {products, category: 'all'});
+        const products = await Product.find(filter);
+        res.render('products/index', {products, category, query});
     }
 })
 
@@ -78,3 +86,4 @@ module.exports.buyProduct = catchAsync(async (req, res) => {
     req.flash('success', 'successfully bought your product');
     res.redirect(`/products/${id}`);
 })
+
