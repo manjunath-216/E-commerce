@@ -7,6 +7,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="category">Select category</label>
                     <select class="form-select" name="category">
+                        <option value="all">all</option>
                         <% for(let category of categories){ %>
                             <option value="<%= category %>"><%= category %></option>
                         <% } %>

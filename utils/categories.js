@@ -1,1 +1,1 @@
-module.exports =['laptop', 'monitor', 'keyboard', 'mouse', 'speakers']
+module.exports =['laptop', 'monitor', 'keyboard', 'mouse', 'speaker']

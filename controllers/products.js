@@ -6,7 +6,7 @@ const User = require('../models/user')
 
 module.exports.renderIndex = catchAsync(async (req, res) => {
     const {category} = req.query;
-    if(category){
+    if(category !== 'all'){
         const products = await Product.find({category, available: true});
         res.render('products/index', {products, category});
     }

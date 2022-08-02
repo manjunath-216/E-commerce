@@ -4,7 +4,7 @@
         <% for(let product of products){ %>
             <div class="col">
                 <div class="card mb-3">
-                    <img class="img-fluid card-img-top" src="<%= product.image %>" height="200px">
+                    <img class="img-fluid object-fit card-img-top" src="<%= product.image %>" height="200px">
                     <div class="card-body text-center">
                         <h5 class="card-title"><%= product.name %></h5>
                         <h5 class="card-title">Price: <%= product.price %></h5>
